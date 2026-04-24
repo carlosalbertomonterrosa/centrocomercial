@@ -18,6 +18,8 @@ body {
   overflow: hidden;
   height: 100vh;
   width: 100vw;
+  /* Añadimos padding inferior para que el contenido no quede detrás de los botones */
+  padding-bottom: 90px;
 }
 
 /* ========= SLIDES ========= */
@@ -33,6 +35,24 @@ body {
   pointer-events: none;
   transition: opacity 0.5s ease;
   text-align: center;
+  /* Permitir scroll dentro del slide si el contenido es muy largo */
+  overflow-y: auto;
+  /* Asegurar que el contenido no se corte con los botones */
+  padding-bottom: 100px;
+}
+
+/* Personalizar scrollbar para móvil (opcional) */
+.slide::-webkit-scrollbar {
+  width: 3px;
+}
+
+.slide::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+}
+
+.slide::-webkit-scrollbar-thumb {
+  background: var(--amarillo);
+  border-radius: 10px;
 }
 
 .slide.active {
@@ -238,40 +258,70 @@ body {
 /* ========= BOTONES NAV ========= */
 .nav {
   position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 1rem;
+  left: 0;
+  right: 0;
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  gap: 0.8rem;
   z-index: 100;
   align-items: center;
+  padding: 0.5rem;
+  /* Fondo semi-transparente para mejor legibilidad */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 60px;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .btn-nav {
   font-family: 'Fredoka One', cursive;
-  font-size: 1rem;
-  padding: 12px 28px;
+  font-size: 0.9rem;
+  padding: 10px 20px;
   border-radius: 50px;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  white-space: nowrap;
+}
+
+/* Ajuste para móviles pequeños */
+@media (max-width: 480px) {
+  .btn-nav {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+  
+  .nav {
+    gap: 0.5rem;
+    bottom: 0.8rem;
+  }
+  
+  body {
+    padding-bottom: 70px;
+  }
+  
+  .slide {
+    padding-bottom: 80px;
+  }
 }
 
 .btn-nav:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
 .btn-nav:active { transform: translateY(0); }
 
 .btn-siguiente { background: var(--amarillo); color: var(--oscuro); }
-.btn-anterior { background: rgba(255,255,255,0.2); color: white; border: 2px solid rgba(255,255,255,0.4); }
+.btn-anterior { background: rgba(255,255,255,0.9); color: var(--oscuro); border: 2px solid rgba(255,255,255,0.4); }
 .btn-inicio { background: var(--naranja); color: white; }
 
 /* ========= PROGRESO ========= */
 .progreso {
   position: fixed;
-  top: 1.5rem;
+  top: 1rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -280,8 +330,8 @@ body {
 }
 
 .punto {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: rgba(255,255,255,0.3);
   transition: all 0.3s ease;
