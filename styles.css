@@ -1,0 +1,371 @@
+/* styles.css */
+:root {
+  --amarillo: #FFD60A;
+  --naranja: #FF6B35;
+  --verde: #06D6A0;
+  --azul: #118AB2;
+  --morado: #7B2FBE;
+  --oscuro: #1A1A2E;
+  --blanco: #FFFBF0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--oscuro);
+  color: var(--blanco);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ========= SLIDES ========= */
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  text-align: center;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ========= FONDOS POR SLIDE ========= */
+.slide-0 { background: linear-gradient(135deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%); }
+.slide-1 { background: linear-gradient(135deg, #2D1B69 0%, #11998e 100%); }
+.slide-2 { background: linear-gradient(135deg, #834d9b 0%, #d04ed6 100%); }
+.slide-3 { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
+.slide-4 { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+.slide-5 { background: linear-gradient(135deg, #1A1A2E 0%, #7B2FBE 100%); }
+.slide-6 { background: linear-gradient(135deg, #FF6B35 0%, #FFD60A 100%); }
+
+/* ========= EMOJI GRANDE ========= */
+.emoji-big {
+  font-size: clamp(4rem, 12vw, 8rem);
+  margin-bottom: 1rem;
+  animation: bounce 2s infinite;
+  line-height: 1;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.emoji-spin {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ========= TEXTOS ========= */
+.titulo {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--amarillo);
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+}
+
+.titulo.dark { color: var(--oscuro); }
+.titulo.white { color: white; }
+
+.subtitulo {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 700;
+  max-width: 600px;
+  line-height: 1.5;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.subtitulo.dark { color: var(--oscuro); }
+
+.burbuja {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  max-width: 560px;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.burbuja.dark {
+  background: rgba(0,0,0,0.15);
+  border-color: rgba(0,0,0,0.2);
+  color: var(--oscuro);
+}
+
+.tag {
+  display: inline-block;
+  background: var(--amarillo);
+  color: var(--oscuro);
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  padding: 4px 16px;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+}
+
+.tag.verde { background: var(--verde); color: white; }
+.tag.morado { background: var(--morado); color: white; }
+
+/* ========= COMPARACION ========= */
+.comparacion {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 620px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.comp-box {
+  flex: 1;
+  min-width: 200px;
+  border-radius: 16px;
+  padding: 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.comp-malo {
+  background: rgba(255,50,50,0.2);
+  border: 2px solid rgba(255,50,50,0.5);
+  color: white;
+}
+
+.comp-bueno {
+  background: rgba(6,214,160,0.2);
+  border: 2px solid rgba(6,214,160,0.6);
+  color: white;
+}
+
+.comp-titulo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.comp-malo .comp-titulo { color: #ff6b6b; }
+.comp-bueno .comp-titulo { color: var(--verde); }
+
+.comp-lista { list-style: none; text-align: left; }
+.comp-lista li { padding: 3px 0; }
+
+/* ========= CHAT DEMO ========= */
+.chat-demo {
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 1rem;
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.msg {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: flex-end;
+}
+
+.msg.bot { justify-content: flex-start; }
+.msg.user { justify-content: flex-end; }
+
+.msg-burbuja {
+  border-radius: 16px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  max-width: 240px;
+  line-height: 1.4;
+}
+
+.bot .msg-burbuja { background: white; color: var(--oscuro); border-bottom-left-radius: 4px; }
+.user .msg-burbuja { background: var(--morado); color: white; border-bottom-right-radius: 4px; }
+
+.msg-avatar { font-size: 1.4rem; }
+
+/* ========= ESTADISTICAS ========= */
+.stats {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.stat-box {
+  background: rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  min-width: 130px;
+}
+
+.stat-num {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.5rem;
+  color: var(--amarillo);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* ========= BOTONES NAV ========= */
+.nav {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 100;
+  align-items: center;
+}
+
+.btn-nav {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn-nav:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+.btn-nav:active { transform: translateY(0); }
+
+.btn-siguiente { background: var(--amarillo); color: var(--oscuro); }
+.btn-anterior { background: rgba(255,255,255,0.2); color: white; border: 2px solid rgba(255,255,255,0.4); }
+.btn-inicio { background: var(--naranja); color: white; }
+
+/* ========= PROGRESO ========= */
+.progreso {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.punto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+}
+
+.punto.activo {
+  background: var(--amarillo);
+  transform: scale(1.4);
+}
+
+/* ========= LOGO FINAL ========= */
+.logo-grande {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--amarillo);
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.4);
+  margin-bottom: 0.5rem;
+}
+
+.qr-sim {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 12px;
+  margin: 0 auto 1rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 3px;
+  padding: 10px;
+}
+
+.qr-cell {
+  border-radius: 2px;
+  background: var(--oscuro);
+}
+
+.qr-cell.w { background: white; }
+
+/* animacion entrada slide */
+.slide.active .emoji-big,
+.slide.active .titulo,
+.slide.active .subtitulo,
+.slide.active .burbuja,
+.slide.active .comparacion,
+.slide.active .chat-demo,
+.slide.active .stats,
+.slide.active .tag,
+.slide.active .logo-grande,
+.slide.active .qr-sim {
+  animation: entrada 0.5s ease forwards;
+}
+
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide.active .titulo { animation-delay: 0.1s; }
+.slide.active .subtitulo { animation-delay: 0.2s; }
+.slide.active .burbuja { animation-delay: 0.3s; }
+.slide.active .comparacion { animation-delay: 0.3s; }
+.slide.active .chat-demo { animation-delay: 0.3s; }
+.slide.active .stats { animation-delay: 0.3s; }
+
+/* Estrellas fondo */
+.estrellas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.estrella {
+  position: absolute;
+  font-size: 1rem;
+  opacity: 0.15;
+  animation: flotar linear infinite;
+}
+
+@keyframes flotar {
+  from { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.15; }
+  90% { opacity: 0.15; }
+  to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
